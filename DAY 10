@@ -1,0 +1,61 @@
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+int main() {
+    char str[1000];
+    
+    // Read input
+    scanf("%s", str);
+    
+    // Get string length
+    int len = strlen(str);
+    
+    // Two-pointer approach
+    int left = 0;
+    int right = len - 1;
+    int isPalindrome = 1; // Assume it's a palindrome
+    
+    while (left < right) {
+        if (str[left] != str[right]) {
+            isPalindrome = 0; // Not a palindrome
+            break;
+        }
+        left++;
+        right--;
+    }
+    
+    // Print result
+    if (isPalindrome) {
+        printf("YES\n");
+    } else {
+        printf("NO\n");
+    }
+    
+    return 0;
+}
+```
+
+## How It Works
+
+The two-pointer technique compares characters from both ends moving towards the center:
+1. Start with `left` at position 0 and `right` at last position
+2. Compare characters at both pointers
+3. If they match, move both pointers towards center
+4. If they don't match, it's not a palindrome
+5. Continue until pointers meet or cross
+
+### Example: "level"
+```
+Step 1: left=0, right=4  →  str[0]='l', str[4]='l'  ✓ Match
+Step 2: left=1, right=3  →  str[1]='e', str[3]='e'  ✓ Match
+Step 3: left=2, right=2  →  left == right, Stop
+
+Result: YES (Palindrome)
+```
+
+### Example: "hello"
+```
+Step 1: left=0, right=4  →  str[0]='h', str[4]='o'  ✗ No Match
+
+Result: NO (Not a palindrome)
