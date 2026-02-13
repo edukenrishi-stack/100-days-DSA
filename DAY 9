@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <string.h>
+
+// Recursive function to reverse a string
+void reverseString(char str[], int start, int end) {
+    // Base case: when start >= end, we're done
+    if (start >= end) {
+        return;
+    }
+    
+    // Swap characters at start and end positions
+    char temp = str[start];
+    str[start] = str[end];
+    str[end] = temp;
+    
+    // Recursive call with updated positions
+    reverseString(str, start + 1, end - 1);
+}
+
+int main() {
+    char str[1000];
+    
+    // Read input
+    scanf("%s", str);
+    
+    // Get string length
+    int len = strlen(str);
+    
+    // Reverse the string recursively
+    reverseString(str, 0, len - 1);
+    
+    // Print the reversed string
+    printf("%s\n", str);
+    
+    return 0;
+}
