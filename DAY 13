@@ -1,0 +1,66 @@
+#include <stdio.h>
+
+int main() {
+    int r, c;
+    
+    // Read matrix dimensions
+    scanf("%d %d", &r, &c);
+    
+    // Declare matrix
+    int matrix[r][c];
+    
+    // Read matrix elements
+    for (int i = 0; i < r; i++) {
+        for (int j = 0; j < c; j++) {
+            scanf("%d", &matrix[i][j]);
+        }
+    }
+    
+    // Spiral traversal using boundaries
+    int top = 0, bottom = r - 1;
+    int left = 0, right = c - 1;
+    
+    int first = 1; // Flag to handle spacing
+    
+    while (top <= bottom && left <= right) {
+        // Traverse right along the top row
+        for (int j = left; j <= right; j++) {
+            if (!first) printf(" ");
+            printf("%d", matrix[top][j]);
+            first = 0;
+        }
+        top++;
+        
+        // Traverse down along the right column
+        for (int i = top; i <= bottom; i++) {
+            if (!first) printf(" ");
+            printf("%d", matrix[i][right]);
+            first = 0;
+        }
+        right--;
+        
+        // Traverse left along the bottom row (if there's a row remaining)
+        if (top <= bottom) {
+            for (int j = right; j >= left; j--) {
+                if (!first) printf(" ");
+                printf("%d", matrix[bottom][j]);
+                first = 0;
+            }
+            bottom--;
+        }
+        
+        // Traverse up along the left column (if there's a column remaining)
+        if (left <= right) {
+            for (int i = bottom; i >= top; i--) {
+                if (!first) printf(" ");
+                printf("%d", matrix[i][left]);
+                first = 0;
+            }
+            left++;
+        }
+    }
+    
+    printf("\n");
+    
+    return 0;
+}
