@@ -1,0 +1,31 @@
+#include <stdio.h>
+
+int main() {
+    int m, n;
+    
+    // Read matrix dimensions
+    scanf("%d %d", &m, &n);
+    
+    // Declare matrix
+    int matrix[m][n];
+    
+    // Read matrix elements
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf("%d", &matrix[i][j]);
+        }
+    }
+    
+    // Calculate sum of primary diagonal
+    int sum = 0;
+    int diagonalSize = (m < n) ? m : n; // Minimum of m and n
+    
+    for (int i = 0; i < diagonalSize; i++) {
+        sum += matrix[i][i]; // Primary diagonal: row index == column index
+    }
+    
+    // Print result
+    printf("%d\n", sum);
+    
+    return 0;
+}
